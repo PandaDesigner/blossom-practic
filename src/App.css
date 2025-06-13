@@ -1,5 +1,5 @@
 .container {
-  @apply flex transition-all flex-col sm:flex-row h-[100dvh] w-full bg-bgPrimary box-border;
+  @apply flex transition-all max-w-full flex-col sm:flex-row h-[100dvh] w-full bg-bgPrimary box-border;
 }
 
 .drawer-container {
@@ -17,5 +17,5 @@
 }
 
 .content-container {
-  @apply flex flex-col md:w-[76%] max-w-[100%] bg-white transition-all;
+  @apply flex flex-col bg-white transition-all items-center;
 }

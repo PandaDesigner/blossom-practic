@@ -1,10 +1,12 @@
+import { FaHeart, FaRegHeart } from 'react-icons/fa'
 import { ProviderApollo } from './adapter/apolloProvider/ProviderApollo'
 import ItemLists from './ui/components/item-lists-starred/ItemLists'
-import { ListCharacters } from './ui/components/list-characters/listCharacters'
-import { SearchInput } from './ui/components/search-input/SearchInput'
 
+import { SearchInput } from './ui/components/search-input/SearchInput'
+import { ListCharacters } from './ui/components/list-characters/ListCharacters';
 
 function App() {
+  const hearth = true;
 
   return (
     <>
@@ -38,7 +40,38 @@ function App() {
               </div>
             </div>
             <div
-              className='content-container'></div>
+              className='content-container flex-1'>
+              <div className='p-4 flex flex-col justify-center
+              items-start w-full max-w-[90%] mt-8'>
+                <div className='relative'>
+                  <div className='h-19 w-19 rounded-full bg-primary-600' />
+                  <div className='h-8 w-8 bg-white rounded-full
+                  flex justify-center items-center cursor-pointer 
+                  absolute bottom-[2px] right-[-8px]'
+                  >
+                    {hearth
+                      ? <FaHeart className='text-secondary-600 h-5 w-5' />
+                      : <FaRegHeart className='text-gray-300 h-5 w-5' />
+                    }
+                  </div>
+                </div>
+                <h2 className='text-2xl font-bold py-2'> Abadango Cluster Princess </h2>
+              </div>
+              <ul className='w-full max-w-[90%] px-6'>
+                <li className='py-4 border-b-1 border-textPrimary/20'>
+                  <h3 className='text-textPrimary font-bold'>Specie</h3>
+                  <p>Alien</p>
+                </li>
+                <li className='py-4 border-b-1 border-textPrimary/20'>
+                  <h3 className='text-textPrimary font-bold'>Status</h3>
+                  <p>Alive</p>
+                </li>
+                <li className='py-4 border-b-1 border-textPrimary/20'>
+                  <h3 className='text-textPrimary font-bold'>Occupation</h3>
+                  <p>Princess</p>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </ProviderApollo>

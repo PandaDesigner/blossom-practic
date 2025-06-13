@@ -1,24 +1,12 @@
-import type { GenderType, SpeciesType, StatusType } from './CharacterResponse';
+export type StatusType = 'Alive' | 'Dead' | 'unknown';
 
+export type GenderType = 'Male' | 'Female' | 'Genderless' | 'unknown';
 export interface Character {
     id: string;
     name: string;
     status: StatusType;
-    species: SpeciesType;
     type: string;
-    gender: GenderType;
+    species: string;
     image: string;
-    favorite: boolean;
-    comments: string[];
-    origin?: {
-        name: string;
-        url: string;
-    };
-    location?: {
-        name: string;
-        url: string;
-    };
-    episode?: string[];
-    url?: string;
-    created?: string;
+    gender: GenderType;
 }

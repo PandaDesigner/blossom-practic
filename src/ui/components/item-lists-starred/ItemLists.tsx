@@ -14,8 +14,8 @@ const ItemLists = ({
         setIsHeart(!isHeart)
     }
     return (
-        <li className='p-4 rounded-md hover:bg-primary-100 flex justify-between
-        cursor-pointer'
+        <li className={`p-4 rounded-lg flex justify-between
+         align-center cursor-pointer ${isHeart && 'bg-primary-100'}`}
             onClick={() => handleClick()}
         >
             <div className={`h-8 w-8 ${!image ? 'bg-white' : 'bg-primary-600'}

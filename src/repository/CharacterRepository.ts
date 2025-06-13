@@ -1,5 +1,5 @@
 import { gql, type ApolloClient, type NormalizedCacheObject } from '@apollo/client';
-import type { CharacterListResponse, ICharacterRepository } from '../domain/character/type/ICharacterRepository';
+import type { CharacterListResponse, ICharacterRepository } from './ICharacterRepository';
 import type { ActiveFilters, CharacterFilters } from '../domain/character/type/CharacterFilters';
 
 
