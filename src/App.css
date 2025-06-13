@@ -9,7 +9,7 @@
 
 .drawer-section {
   @apply w-full transition-all min-w-[315px] max-w-[95%] 
-  sm:max-w-[90%] flex justify-start items-end p-4;
+  sm:max-w-[90%] flex;
 }
 
 .drawer-title {

@@ -55,7 +55,7 @@ export const useCharacterStore = create<CharacterState>()(
             setPaginationInfo: (info) => set({
                 totalPages: info.totalPages,
                 totalCount: info.totalCount,
-                currentPage: info.next ? info.next - 1 : info.pages,
+                currentPage: info.currentPage,
             }),
 
             // Acciones de personajes
@@ -68,7 +68,7 @@ export const useCharacterStore = create<CharacterState>()(
                     ),
                 })),
 
-            addComment: (id, comment) =>
+            addComment: (id: string, comment: string) =>
                 set((state) => ({
                     characters: state.characters.map((character) =>
                         character.id === id
@@ -77,7 +77,7 @@ export const useCharacterStore = create<CharacterState>()(
                     ),
                 })),
 
-            removeComment: (id, commentIndex) =>
+            removeComment: (id: string, commentIndex: number) =>
                 set((state) => ({
                     characters: state.characters.map((character) =>
                         character.id === id
@@ -91,7 +91,8 @@ export const useCharacterStore = create<CharacterState>()(
 
             // Utilidades
             getFavoriteCharacters: () => get().characters.filter(char => char.favorite),
-            getCharacterById: (id) => get().characters.find(char => char.id === id),
+            getCharacterById: (id: string) =>
+                get().characters.find(char => char.id === id),
         }),
         {
             name: 'character-store',
