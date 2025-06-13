@@ -1,18 +1,17 @@
-import { env } from './env'
-
-console.log(env.VITE_RICK_AND_MORTY_API_URL)
+import { ProviderApollo } from './adapter/apolloProvider/ProviderApollo'
 
 function App() {
 
 
   return (
     <>
-      <div>
-        <h1 className='text-indigo-500 text-3xl font-bold'>
-          Welcome to your interview test.
-        </h1>
-      </div>
-
+      <ProviderApollo>
+        <div>
+          <h1 className='text-indigo-500 text-3xl font-bold'>
+            Welcome to your interview test.
+          </h1>
+        </div>
+      </ProviderApollo>
     </>
   )
 }
