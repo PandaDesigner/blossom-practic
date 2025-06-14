@@ -12,7 +12,6 @@ export class GraphQLCharacterRepository implements ICharacterRepository {
     }
 
     async getAllCharacters(page?: number): Promise<CharactersData> {
-
         try {
             const { data } = await this.client.query({
                 query: GET_ALL_CHARACTERS,
