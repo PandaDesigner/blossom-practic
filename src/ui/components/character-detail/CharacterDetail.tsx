@@ -13,6 +13,10 @@ const CharacterDetail = ({
 
     const { toggleStarred, isStarred, } = useCharacter();
 
+    console.log('desde character-detail', { character });
+
+    if (!character) return null
+
     return (
         <>
             <div className='p-4 flex flex-col justify-center
