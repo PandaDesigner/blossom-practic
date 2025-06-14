@@ -1,47 +1,49 @@
-import { useState } from 'react'
-import { CiImageOff } from 'react-icons/ci';
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { useCharacter } from '../../../hooks/useCharacter'
+import { CiImageOff } from 'react-icons/ci'
+import { FaHeart, FaRegHeart } from 'react-icons/fa'
+import type { Character } from '../../../domain/character/type/Character'
 
-interface Props { image?: string, name?: string, species?: string }
+interface Props {
+    character: Character
+}
 
-const ItemLists = ({
-    image,
-    name = "Abadango Cluster Princess",
-    species = "Alien"
-}: Props) => {
-    const [isHeart, setIsHeart] = useState(false)
+const ItemLists = ({ character }: Props) => {
+    const { isStarred, toggleStarred } = useCharacter()
+
     const handleClick = () => {
-        setIsHeart(!isHeart)
+        toggleStarred(character.id)
     }
+
     return (
         <li className={`p-4 rounded-lg flex justify-between
-         align-center cursor-pointer ${isHeart && 'bg-primary-100'}`}
-            onClick={() => handleClick()}
+         align-center cursor-pointer ${'hover:bg-primary-100'}`}
+
         >
-            <div className={`h-8 w-8 ${!image ? 'bg-white' : 'bg-primary-600'}
+            <div className={`h-8 w-8 ${!character.image ? 'bg-white' : 'bg-primary-600'}
             rounded-full
             flex justify-center items-center`}>
-                {!image
+                {!character.image
                     ? <CiImageOff />
                     : <img
                         className='rounded-full h-full w-full'
-                        src={image}
-                        alt={name} />
+                        src={character.image}
+                        alt={character.name} />
                 }
             </div>
             <div className='flex-1 px-2'>
                 <h2
                     className='text-[14px] text-textPrimary font-medium'>
-                    {name}
+                    {character.name}
                 </h2>
-                {!!species && <p className='text-[12px] text-textPrimary font-light'>
-                    {species}
+                {!!character.species && <p className='text-[12px] text-textPrimary font-light'>
+                    {character.species}
                 </p>}
             </div>
             <div className={`h-8 w-8 bg-bgPrimary hover:bg-white rounded-full
             flex justify-center items-center cursor-pointer`}
+                onClick={handleClick}
             >
-                {isHeart
+                {isStarred(character.id)
                     ? <FaHeart className='text-secondary-600 h-5 w-5' />
                     : <FaRegHeart className='text-gray-300 h-5 w-5' />
                 }
