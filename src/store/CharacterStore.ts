@@ -4,129 +4,129 @@ import type { Character } from '../domain/character/type/Character';
 import type { CharactersData } from '../domain/character/type/CharacterResponse';
 
 /**
- * Tipo de filtro para personajes destacados o no.
+ * Filter type for starred or non-starred characters.
  */
-type CharacterFilter = 'all' | 'starred' | 'others';
+export type CharacterFilter = 'all' | 'starred' | 'others';
 
 /**
- * Tipo de filtro para especies. Por defecto 'all'.
+ * Filter type for species. Defaults to 'all'.
  */
-type SpecieFilter = 'all' | string;
+export type SpecieFilter = 'all' | string;
 
 /**
- * Tipo de filtro para estado de personajes.
+ * Filter type for character status.
  */
-type StatusFilter = 'all' | 'Alive' | 'Dead' | 'unknown';
+export type StatusFilter = 'all' | 'Alive' | 'Dead' | 'unknown';
 
 /**
- * Estado y acciones del store de personajes.
+ * Character store state and actions.
  */
 interface CharacterState {
-    // Datos
-    /** Todos los personajes obtenidos del endpoint principal */
+    // Data
+    /** All characters fetched from main endpoint */
     allCharacters: CharactersData | null;
-    /** Personajes filtrados por nombre */
+    /** Characters filtered by name */
     nameCharacters: Character[] | null;
-    /** Detalle de un personaje individual */
+    /** Individual character detail */
     character: Character | null;
 
-    // Estado de UI
-    /** Bandera de carga para operaciones asíncronas */
+    // UI State
+    /** Loading flag for async operations */
     loading: boolean;
-    /** Error que ocurrió durante una operación */
+    /** Error that occurred during operation */
     error: string | null;
 
-    // Filtros
-    /** Filtro de personajes: todos, destacados o no destacados */
+    // Filters
+    /** Character filter: all, starred or non-starred */
     characterFilter: CharacterFilter;
-    /** Filtro por especie */
+    /** Species filter */
     specieFilter: SpecieFilter;
-    /** Filtro por estado */
+    /** Status filter */
     statusFilter: StatusFilter;
-    /** Término de búsqueda por nombre */
+    /** Name search term */
     searchTerm: string;
 
-    // Favoritos
-    /** Lista de IDs de personajes destacados */
+    // Favorites
+    /** List of starred character IDs */
     starredCharacters: string[];
 
-    // Acciones de datos
+    // Data Actions
     /**
-     * Establece todos los personajes.
-     * @param data - Objeto con la información de personajes.
+     * Sets all characters.
+     * @param data - Object with characters information.
      */
     setAllCharacters: (data: CharactersData) => void;
 
     /**
-     * Establece los personajes filtrados por nombre.
-     * @param data - Lista de personajes.
+     * Sets name-filtered characters.
+     * @param data - List of characters.
      */
     setNameCharacters: (data: Character[]) => void;
 
     /**
-     * Establece un personaje individual.
-     * @param data - Detalle del personaje.
+     * Sets individual character.
+     * @param data - Character detail.
      */
     setCharacter: (data: Character | null) => void;
 
-    // Acciones de UI
+    // UI Actions
     /**
-     * Cambia el estado de carga.
-     * @param loading - Valor booleano.
+     * Changes loading state.
+     * @param loading - Boolean value.
      */
     setLoading: (loading: boolean) => void;
 
     /**
-     * Establece un mensaje de error.
-     * @param error - Texto del error.
+     * Sets error message.
+     * @param error - Error text.
      */
     setError: (error: string | null) => void;
 
-    /** Limpia cualquier mensaje de error */
+    /** Clears any error message */
     clearError: () => void;
 
-    // Acciones de filtros
+    // Filter Actions
     /**
-     * Establece el filtro de personajes.
-     * @param filter - Filtro seleccionado.
+     * Sets character filter.
+     * @param filter - Selected filter.
      */
     setCharacterFilter: (filter: CharacterFilter) => void;
 
     /**
-     * Establece el filtro de especie.
-     * @param filter - Especie seleccionada.
+     * Sets species filter.
+     * @param filter - Selected species.
      */
     setSpecieFilter: (filter: SpecieFilter) => void;
 
     /**
-     * Establece el filtro de estado.
-     * @param filter - Estado seleccionado.
+     * Sets status filter.
+     * @param filter - Selected status.
      */
     setStatusFilter: (filter: StatusFilter) => void;
 
     /**
-     * Establece el término de búsqueda.
-     * @param term - Texto de búsqueda.
+     * Sets search term.
+     * @param term - Search text.
      */
     setSearchTerm: (term: string) => void;
 
-    // Acciones de favoritos
+    // Favorite Actions
     /**
-     * Agrega o elimina un personaje de los destacados.
-     * @param id - ID del personaje.
+     * Adds or removes a character from starred list.
+     * @param id - Character ID.
      */
     toggleStarred: (id: string) => void;
 
-    // Acciones de limpieza
-    /** Limpia todos los datos de personajes */
+    // Cleanup Actions
+    /** Clears all character data */
     clearData: () => void;
 
-    /** Restablece todos los filtros a sus valores por defecto */
+    /** Resets all filters to default values */
     clearFilters: () => void;
 }
 
 /**
- * Hook Zustand para manejar el estado global de personajes.
+ * Zustand hook to manage global character state.
  */
 export const useCharacterStore = create<CharacterState>((set) => ({
     allCharacters: null,

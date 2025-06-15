@@ -13,8 +13,6 @@ const CharacterDetail = ({
 
     const { toggleStarred, isStarred, } = useCharacter();
 
-    console.log('desde character-detail', { character });
-
     if (!character) return null
 
     return (

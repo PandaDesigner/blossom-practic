@@ -8,10 +8,14 @@ const CharacterDetailPage = () => {
     const { id } = useParams();
     const { character, fetchCharacterById, loading } = useCharacter();
 
+    /**
+* useEffect hook that fetches character data when component mounts or id changes
+* @param {string} id - Character ID from URL params
+* @param {Function} fetchCharacterById - Function to fetch character data
+* @returns {void}
+     */
 
     useEffect(() => {
-
-        console.log({ id });
         (async (id) => {
             await fetchCharacterById(id as string);
         })(id);
@@ -24,7 +28,6 @@ const CharacterDetailPage = () => {
             </div>
         );
     };
-    console.log({ id, character, loading });
 
     return (
         <div className='p-4 w-full'>

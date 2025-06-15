@@ -1,6 +1,4 @@
-
 import { useCharacter } from '../../../hooks/useCharacter';
-
 interface Props {
     showMenu: boolean;
 }
