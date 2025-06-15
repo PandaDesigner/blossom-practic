@@ -47,7 +47,7 @@ export const SearchInput = () => {
             >
                 <FilterIcons />
             </div>
-            <FiltersMenu showMenu={showMenu} />
+            <FiltersMenu showMenu={showMenu} handleClick={handleClick} />
         </div>
     )
 }

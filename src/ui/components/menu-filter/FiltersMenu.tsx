@@ -1,17 +1,44 @@
+import { useEffect, useState } from 'react';
 import { useCharacter } from '../../../hooks/useCharacter';
+import type { CharacterFilter, SpecieFilter } from '../../../store/CharacterStore';
 interface Props {
     showMenu: boolean;
+    handleClick: () => void;
 }
 
-export const FiltersMenu = ({ showMenu }: Props) => {
+interface SpecieState {
+    characterFilter: CharacterFilter;
+    specieFilter: SpecieFilter;
+
+}
+
+export const FiltersMenu = ({ showMenu, handleClick }: Props) => {
+
+    const [filter, setFilter] = useState<SpecieState>({
+        characterFilter: 'all',
+        specieFilter: 'all'
+    });
+
     const {
         characterFilter,
         specieFilter,
         setCharacterFilter,
         setSpecieFilter,
         availableSpecies,
-        clearFilters
     } = useCharacter();
+
+    useEffect(() => {
+        setFilter({
+            characterFilter: characterFilter,
+            specieFilter: (specieFilter as unknown) as SpecieFilter
+        });
+    }, [characterFilter, specieFilter])
+
+    const handlerFilter = () => {
+        setCharacterFilter(filter.characterFilter);
+        setSpecieFilter((filter.specieFilter as unknown) as string);
+        handleClick();
+    }
 
     return (
         <div
@@ -20,46 +47,64 @@ export const FiltersMenu = ({ showMenu }: Props) => {
             <p className='text-sm font-light capitalize 
             text-textPrimary col-span-3 max-h-1'>Character</p>
             <button
-                onClick={() => setCharacterFilter('all')}
+                onClick={() => setFilter(prev => ({
+                    ...prev,
+                    characterFilter: 'all'
+                }))}
                 className={`text-sm font-light text-textPrimary max-h-12 
                 hover:bg-primary-100 border-gray-200 rounded-md border-1 
-                transition-all hover:border-primary-100 ${characterFilter === 'all' ? 'bg-primary-100' : ''}`}>Todos
+                transition-all hover:border-primary-100 ${filter.characterFilter === 'all' ? 'bg-primary-100' : ''}`}>Todos
             </button>
             <button
-                onClick={() => setCharacterFilter('starred')}
+                onClick={() => setFilter(prev => ({
+                    ...prev,
+                    characterFilter: 'starred'
+                }))}
                 className={`text-sm font-light text-textPrimary max-h-12 
                 hover:bg-primary-100 border-gray-200 rounded-md border-1 
-                transition-all hover:border-primary-100 ${characterFilter === 'starred' ? 'bg-primary-100' : ''}`}>Starred
+                transition-all hover:border-primary-100 ${filter.characterFilter === 'starred' ? 'bg-primary-100' : ''}`}>Starred
             </button>
             <button
-                onClick={() => setCharacterFilter('others')}
+                onClick={() => setFilter((prev) => ({
+                    ...prev,
+                    characterFilter: 'others'
+                }))}
                 className={`text-sm font-light text-textPrimary max-h-12 
                 hover:bg-primary-100 border-gray-200 rounded-md border-1 
-                transition-all hover:border-primary-100 ${characterFilter === 'others' ? 'bg-primary-100' : ''}`}>Others
+                transition-all hover:border-primary-100 ${filter.characterFilter === 'others' ? 'bg-primary-100' : ''}`}>Others
             </button>
             <p className='text-sm font-light capitalize 
             text-textPrimary col-span-3 max-h-1 mt-2'>Especie</p>
             <button
-                onClick={() => setSpecieFilter('all')}
+                onClick={() => setFilter(prev => ({
+                    ...prev,
+                    specieFilter: ('all' as unknown) as SpecieFilter
+                }))}
                 className={`text-sm font-light text-textPrimary max-h-12 
                 hover:bg-primary-100 border-gray-200 rounded-md border-1 
-                transition-all hover:border-primary-100 ${specieFilter === 'all' ? 'bg-primary-100' : ''}`}>All
+                transition-all hover:border-primary-100 ${filter.specieFilter.toString() === 'all'
+                        ? 'bg-primary-100'
+                        : ''}`}>All
             </button>
             {availableSpecies.map((specie) => (
                 <button
                     key={specie}
-                    onClick={() => setSpecieFilter(specie)}
+                    onClick={() => setFilter(prev => ({
+                        ...prev,
+                        specieFilter: (specie as unknown) as SpecieFilter
+                    }))}
                     className={`text-sm font-light text-textPrimary max-h-12 
                     hover:bg-primary-100 border-gray-200 rounded-md border-1 
-                    transition-all hover:border-primary-100 ${specieFilter === specie ? 'bg-primary-100' : ''}`}>{specie}
+                    transition-all hover:border-primary-100 ${filter.specieFilter.toString() === specie
+                            ? 'bg-primary-100 text-primary-700 border-primary-100'
+                            : ''}`}>{specie}
                 </button>
             ))}
-
             <button
-                onClick={clearFilters}
+                onClick={handlerFilter}
                 className='text-sm font-light text-textPrimary max-h-12 bg-gray-200 
-                hover:bg-primary-600/40 border-gray-200 rounded-md border-1 col-span-3
-                transition-all mt-4'>Clear Filter
+                hover:bg-primary-600 hover:text-white border-gray-200 rounded-md border-1 col-span-3
+                transition-all mt-4'>Filter
             </button>
         </div>
     )
