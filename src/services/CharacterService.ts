@@ -18,7 +18,7 @@ export class CharacterService {
         return this.repository.getCharacterById(id);
     }
 
-    async getCharacterByName(name: string, page: number = 1): Promise<Character | null> {
+    async getCharacterByName(name: string, page: number = 1): Promise<Array<Character> | null> {
         return this.repository.getCharacterByName(name, page);
     }
 }

@@ -30,7 +30,7 @@ export class GraphQLCharacterRepository implements ICharacterRepository {
         }
 
     }
-    async getCharacterByName(name: string, page?: number): Promise<Character | null> {
+    async getCharacterByName(name: string, page?: number): Promise<Array<Character> | null> {
         try {
             const { data } = await this.client.query({
                 query: GET_CHARACTERS_BY_NAME,
@@ -44,8 +44,7 @@ export class GraphQLCharacterRepository implements ICharacterRepository {
             if (!data?.characters?.results) {
                 return null;
             }
-
-            return data.characters.results.length > 0 ? data.characters.results[0] : null;
+            return data.characters.results.length > 0 ? data.characters.results : null;
 
         } catch (error) {
             console.error('Error fetching characters by name:', error);

@@ -99,19 +99,20 @@ describe('CharacterService', () => {
     describe('getCharacterByName', () => {
         it('should return character when found with default page', async () => {
             const mockCharacter: Character = {
-                id: '1', name: 'Rick',
+                id: '1',
+                name: 'Rick',
                 status: 'Alive',
                 type: '',
                 species: '',
                 image: '',
                 gender: 'unknown'
             };
-            mockRepository.getCharacterByName.mockResolvedValue(mockCharacter);
+            mockRepository.getCharacterByName.mockResolvedValue([mockCharacter]);
 
             const result = await characterService.getCharacterByName('Rick');
 
             expect(mockRepository.getCharacterByName).toHaveBeenCalledWith('Rick', 1);
-            expect(result).toEqual(mockCharacter);
+            expect(result).toEqual([mockCharacter]);
         });
 
         it('should return character when found with specified page', async () => {
@@ -123,12 +124,12 @@ describe('CharacterService', () => {
                 image: '',
                 gender: 'unknown'
             };
-            mockRepository.getCharacterByName.mockResolvedValue(mockCharacter);
+            mockRepository.getCharacterByName.mockResolvedValue([mockCharacter]);
 
             const result = await characterService.getCharacterByName('Rick', 2);
 
             expect(mockRepository.getCharacterByName).toHaveBeenCalledWith('Rick', 2);
-            expect(result).toEqual(mockCharacter);
+            expect(result).toEqual([mockCharacter]);
         });
 
         it('should return null when character not found', async () => {
