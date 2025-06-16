@@ -1,5 +1,7 @@
 # Proyecto Initial Scaffolding
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d1217e02-d369-4dd2-93c2-e77f6d8262e6/deploy-status)](https://app.netlify.com/projects/blossom-test-pedro/deploys)
+
 Este proyecto es una base para construir aplicaciones React modernas, utilizando las siguientes tecnologías clave:
 
 - **React Router DOM:** Para la gestión de la navegación y las rutas en la aplicación.
@@ -34,3 +36,5 @@ Para comenzar con este proyecto, sigue estos pasos:
 ### Variables de Entorno
 
 Crea un archivo `.env` en la raíz del proyecto y define las variables de entorno necesarias. Por ejemplo:
+
+`VITE_NAME_VARIABLE`

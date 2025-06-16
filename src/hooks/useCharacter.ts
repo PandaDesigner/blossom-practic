@@ -162,6 +162,26 @@ export const useCharacter = () => {
         return filteredCharacters.filter((char: { id: string; }) => !starredCharacters.includes(char.id));
     }, [filteredCharacters, starredCharacters]);
 
+    const favoriteChartList = useMemo(() => {
+        return (): {
+            filterApp: Array<string>
+            filterActive: boolean
+            totalResult: number
+        } => {
+            const arrFilter = [];
+            let lengthActive: number = 0;
+            if (characterFilter !== 'all') arrFilter.push(characterFilter);
+            if (specieFilter !== 'all') arrFilter.push(specieFilter);
+            lengthActive = starredCharactersList.length + otherCharactersList.length
+
+            return {
+                filterApp: arrFilter,
+                filterActive: !!arrFilter.length,
+                totalResult: lengthActive
+            }
+        }
+    }, [characterFilter, specieFilter, starredCharactersList, otherCharactersList])
+
     return {
         // Estado
         allCharacters,
@@ -213,6 +233,9 @@ export const useCharacter = () => {
         totalCharacters: allCharacters?.info?.count || 0,
 
         /** Total de páginas disponibles */
-        totalPages: allCharacters?.info?.pages || 0
+        totalPages: allCharacters?.info?.pages || 0,
+
+        /**Total filter activos */
+        resultFilterFavorite: favoriteChartList()
     };
 };

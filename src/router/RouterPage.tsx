@@ -15,7 +15,7 @@ function RouterPage() {
         character,
         fetchCharacterById,
         loading,
-        error
+        error,
     } = useCharacter();
 
     /**
@@ -47,7 +47,6 @@ function RouterPage() {
      * - otherCharactersList: The list of available characters
      * - fetchCharacterById: Function to fetch a character by ID
      */
-
     useEffect(() => {
         if (!character && otherCharactersList.length > 0) {
             fetchCharacterById(otherCharactersList[0].id);
