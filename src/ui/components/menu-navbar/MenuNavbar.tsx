@@ -1,3 +1,4 @@
+import { constants } from '../../../constants/content'
 import type { Character } from '../../../domain/character/type/Character'
 import { useCharacter } from '../../../hooks/useCharacter'
 import ItemLists from '../item-lists-starred/ItemLists'
@@ -9,13 +10,13 @@ function MenuNavbar() {
     return (
         <div className='drawer-container'>
             <div className='drawer-section justify-start items-end py-4 h-16 mt-8'>
-                <h1 className='drawer-title'>Rick and Morty list</h1>
+                <h1 className='drawer-title'>{constants.TITLE_APP}</h1>
             </div>
             <SearchInput />
             <div className='drawer-section flex-col justify-center py-4'>
                 <h2 className='text-[12px] text-textPrimary uppercase font-light py-3
                 px-1'>
-                    Starred Characters ({starredCharactersList.length})
+                    {constants.STARRED_CHARACTERS} ({starredCharactersList.length})
                 </h2>
                 <ul className='flex flex-col w-full gap-2'>
                     {starredCharactersList.map((char: { id: string }) => (
@@ -24,7 +25,7 @@ function MenuNavbar() {
                 </ul>
                 <h2 className='text-[12px] text-textPrimary uppercase font-light py-4 
                 px-1'>
-                    Characters ({otherCharactersList.length})
+                    {constants.CHARACTER} ({otherCharactersList.length})
                 </h2>
                 <ul className='flex flex-col w-full'>
                     {otherCharactersList.map(char => (

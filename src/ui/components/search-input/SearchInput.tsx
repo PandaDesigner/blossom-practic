@@ -3,6 +3,7 @@ import { FilterIcons } from '../../icons/FilterIcons';
 import { FiltersMenu } from '../menu-filter/FiltersMenu';
 import { useState, useEffect } from 'react';
 import { useCharacter } from '../../../hooks/useCharacter';
+import { constants } from '../../../constants/content';
 
 export const SearchInput = () => {
     const [showMenu, setShowMenu] = useState(false);
@@ -40,7 +41,7 @@ export const SearchInput = () => {
                 type='text'
                 value={inputValue}
                 onChange={handleInputChange}
-                placeholder='Search or filter results'
+                placeholder={constants.SEARCH_OR_FILTER}
                 className='transition-all h-full flex-1 text-[14px] p-1' />
             <div className='p-1 md:p-2 hover:bg-primary-100/40 rounded-md'
                 onClick={handleClick}

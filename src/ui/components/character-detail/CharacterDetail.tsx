@@ -1,11 +1,12 @@
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { useCharacter } from '../../../hooks/useCharacter';
 import type { Character } from '../../../domain/character/type/Character';
+import { constants } from '../../../constants/content';
 
 
 interface CharacterDetailProps {
     character: Character;
-}
+};
 
 const CharacterDetail = ({
     character }:
@@ -13,7 +14,7 @@ const CharacterDetail = ({
 
     const { toggleStarred, isStarred, } = useCharacter();
 
-    if (!character) return null
+    if (!character) return null;
 
     return (
         <>
@@ -45,20 +46,20 @@ const CharacterDetail = ({
             </div>
             <ul className='w-full max-w-[90%] px-6'>
                 <li className='py-4 border-b-1 border-textPrimary/20'>
-                    <h3 className='text-textPrimary font-bold'>Especie</h3>
+                    <h3 className='text-textPrimary font-bold'>{constants.SPECIES}</h3>
                     <p>{character.species}</p>
                 </li>
                 <li className='py-4 border-b-1 border-textPrimary/20'>
-                    <h3 className='text-textPrimary font-bold'>Estado</h3>
+                    <h3 className='text-textPrimary font-bold'>{constants.STATE}</h3>
                     <p>{character.status}</p>
                 </li>
                 <li className='py-4 border-b-1 border-textPrimary/20'>
-                    <h3 className='text-textPrimary font-bold'>Género</h3>
+                    <h3 className='text-textPrimary font-bold'>{constants.GENDER}</h3>
                     <p>{character.gender}</p>
                 </li>
             </ul>
         </>
-    )
-}
+    );
+};
 
 export default CharacterDetail
