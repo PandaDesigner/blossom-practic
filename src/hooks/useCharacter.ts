@@ -78,8 +78,8 @@ export const useCharacter = () => {
 
         setLoading(true);
         try {
-            const character = await service.getCharacterByName(name, page);
-            setNameCharacters(character ? [character] : []);
+            const data = await service.getCharacterByName(name, page);
+            setNameCharacters(data ? data : []);
         } catch (err: unknown) {
             if (err instanceof Error) {
                 setError(err.message);

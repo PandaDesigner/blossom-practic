@@ -89,7 +89,7 @@ export const FiltersMenu = ({ showMenu, handleClick }: Props) => {
             </button>
             {availableSpecies.map((specie) => (
                 <button
-                    key={specie}
+                    key={String(specie)}
                     onClick={() => setFilter(prev => ({
                         ...prev,
                         specieFilter: (specie as unknown) as SpecieFilter
@@ -98,7 +98,7 @@ export const FiltersMenu = ({ showMenu, handleClick }: Props) => {
                     hover:bg-primary-100 border-gray-200 rounded-md border-1 
                     transition-all hover:border-primary-100 ${filter.specieFilter.toString() === specie
                             ? 'bg-primary-100 text-primary-700 border-primary-100'
-                            : ''}`}>{specie}
+                            : ''}`}>{String(specie)}
                 </button>
             ))}
             <button
